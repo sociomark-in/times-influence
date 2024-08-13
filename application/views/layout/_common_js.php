@@ -4,8 +4,8 @@
 <!-- Initialize Swiper -->
 <script>
 	new Swiper(".mySwiper", {
-		// slidesPerView: 4,
-		// spaceBetween: 30,
+		slidesPerView: 2,
+		spaceBetween: 10,
 		freeMode: true,
 		autoplay: {
 			delay: 2500,

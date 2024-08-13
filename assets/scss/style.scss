@@ -1,7 +1,7 @@
 $blue: #214896;
 $red: red;
 $white0: #ffffff;
-$white: #fdfdfd;
+$white: #f1f1f1;
 $light: rgba(#1e1e1e, 10%);
 $black: #1c1c1c;
 
@@ -18,6 +18,7 @@ $theme: "blue" $blue, "black" $black, "white" $white, "red" $red, "light" $light
 
 body {
 	font-family: "Poppins", Arial, Helvetica, sans-serif;
+	background-color: $white;
 	font-size: 1rem;
 	@media screen and (min-width: 768px) {
 		font-size: 1.1rem;
@@ -30,21 +31,33 @@ h1 {
 	}
 }
 
-.swiper{
-	&.swiper-white{
-		.swiper-pagination-bullet{
+.swiper {
+	.swiper-pagination-bullet {
+		background: rgba($blue, 50%);
+		&.swiper-pagination-bullet-active {
+			background: $blue;
+		}
+	}
+	.swiper-button-next,
+	.swiper-button-prev {
+		&::after {
+			content: "";
+			background-color: $blue;
+			height: 3rem;
+			aspect-ratio: 1;
+		}
+	}
+	&.swiper-white {
+		.swiper-pagination-bullet {
 			background: rgba($white, 50%);
-			&.swiper-pagination-bullet-active{
+			&.swiper-pagination-bullet-active {
 				background: $white;
 			}
 		}
-		.swiper-button-next,.swiper-button-prev{
-			&::after{
-				content: "";
+		.swiper-button-next,
+		.swiper-button-prev {
+			&::after {
 				background-color: $white;
-				height: 3rem;
-				aspect-ratio: 1;
-
 			}
 		}
 	}
@@ -55,21 +68,15 @@ h1 {
 	min-height: 50vh;
 }
 .frame-icon {
-	mask-image: url("../media/svg-masks/mask.svg");
-	mask-repeat: no-repeat;
-	mask-size: cover;
-	mask-position: center;
 	position: relative;
+	border-radius: 1.5rem;
+	overflow: hidden;
 	&::after {
-		content: "";
+		content: unset;
 		background-color: $red;
 		width: 20%;
 		aspect-ratio: 1;
-		mask-image: url("../media/svg-masks/mask.svg");
-		mask-repeat: no-repeat;
-		mask-size: cover;
 		position: absolute;
-		mask-position: center;
 		top: 0;
 		left: 50%;
 		transform: translate(-50%, -50%);
@@ -78,6 +85,20 @@ h1 {
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
+	}
+	@media screen and (min-width: 768px) {
+		border-radius: 0;
+		mask-image: url("../media/svg-masks/mask.svg");
+		mask-repeat: no-repeat;
+		mask-size: cover;
+		mask-position: center;
+		&::after {
+			content: "";
+			mask-image: url("../media/svg-masks/mask.svg");
+			mask-repeat: no-repeat;
+			mask-size: cover;
+			mask-position: center;
+		}
 	}
 }
 .frame-wrapper {
@@ -109,6 +130,7 @@ section {
 	.section-title {
 		text-transform: capitalize;
 		line-height: 1.3;
+		margin-bottom: 2rem;
 		p {
 			margin: 0;
 		}
@@ -117,6 +139,7 @@ section {
 			font-size: calc(max(5.5vmin, 2rem));
 			font-weight: 700;
 			line-height: 1;
+			text-transform: uppercase;
 			position: relative;
 			width: fit-content;
 			&::after {
@@ -137,17 +160,17 @@ section {
 				height: 4px;
 				width: 50%;
 			}
-			&.text-white{
-				&::after{
+			&.text-white {
+				&::after {
 					background: linear-gradient(
-					90deg,
-					$red 0%,
-					$red 15%,
-					transparent 15%,
-					transparent calc(15% + 0.5rem),
-					rgba($white, 30%) calc(15% + 0.5rem),
-					rgba($white, 30%) 96%
-				);
+						90deg,
+						$red 0%,
+						$red 15%,
+						transparent 15%,
+						transparent calc(15% + 0.5rem),
+						rgba($white, 30%) calc(15% + 0.5rem),
+						rgba($white, 30%) 96%
+					);
 				}
 			}
 		}
@@ -161,4 +184,5 @@ nav.navbar {
 	left: 0;
 	z-index: 999;
 	background-color: $white0;
+	box-shadow: 0 0.25rem 0 0 $red;
 }
